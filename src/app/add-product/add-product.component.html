@@ -1,0 +1,83 @@
+<div class="form_container">
+  <div class="form_title">
+    <h1>Formulario de Registro</h1>
+  </div>
+  <hr />
+  <form [formGroup]="productForm" (ngSubmit)="sendData()">
+    <div class="inputs_form">
+      <div>
+        <p>ID</p>
+        <input class="input_form" type="text" formControlName="id" 
+        [ngClass]="{ 'invalid-input': productForm.get('id')?.invalid && productForm.get('id')?.touched }"
+        required />
+        <div style="color: red;"
+          *ngIf="productForm.get('id')?.invalid && productForm.get('id')?.touched">
+          <p *ngIf="productForm.get('id')?.errors?.['required']">Este campo es requerido!.</p>
+          <p *ngIf="productForm.get('id')?.errors?.['minlength']">El ID debe contener al menos 3 caracteres.</p>
+          <p *ngIf="productForm.get('id')?.errors?.['maxlength']">El ID no debe contener mas de 10 caracteres.</p>
+          <p *ngIf="productForm.get('id')?.errors?.['idTaken']">Este ID ya existe.</p>
+        </div>
+      </div>
+      <div>
+        <p>Nombre</p>
+        <input class="input_form" type="text" formControlName="name" 
+        [ngClass]="{ 'invalid-input': productForm.get('name')?.invalid && productForm.get('name')?.touched }"
+        required />
+        <div style="color: red;"
+          *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched">
+          <p *ngIf="productForm.get('name')?.errors?.['required']">Este campo es requerido!.</p>
+          <p *ngIf="productForm.get('name')?.errors?.['minlength']">El nombre debe contener al menos 5 caracteres.</p>
+          <p *ngIf="productForm.get('name')?.errors?.['maxlength']">El nombre no debe contener mas de 100 caracteres.</p>
+        </div>
+      </div>
+      <div>
+        <p>Descripción</p>
+        <input class="input_form" type="text" formControlName="description" 
+        [ngClass]="{ 'invalid-input': productForm.get('description')?.invalid && productForm.get('description')?.touched }"
+        required />
+        <div style="color: red;"
+          *ngIf="productForm.get('description')?.invalid && productForm.get('description')?.touched">
+          <p *ngIf="productForm.get('description')?.errors?.['required']">Este campo es requerido!.</p>
+          <p *ngIf="productForm.get('description')?.errors?.['minlength']">La descripción debe contener al menos 10 caracteres.</p>
+          <p *ngIf="productForm.get('description')?.errors?.['maxlength']">La descripción no debe contener mas de 200 caracteres.</p>
+        </div>
+      </div>
+      <div>
+        <p>Logo</p>
+        <input class="input_form" type="text" formControlName="logo" 
+        [ngClass]="{ 'invalid-input': productForm.get('logo')?.invalid && productForm.get('logo')?.touched }"
+        required />
+        <div style="color: red;"
+          *ngIf="productForm.get('logo')?.invalid && productForm.get('logo')?.touched">
+          Este campo es requerido!
+        </div>
+      </div>
+      <div>
+        <p>Fecha de Liberación</p>
+        <input class="input_form" type="date" formControlName="date_release" [min]="atualDate | date: 'yyyy-MM-dd'" #dateRelease
+        [ngClass]="{ 'invalid-input': productForm.get('date_release')?.invalid && productForm.get('date_release')?.touched }"
+        required />
+        <div style="color: red;"
+          *ngIf="productForm.get('date_release')?.invalid && productForm.get('date_release')?.touched">
+          Este campo es requerido!
+        </div>
+      </div>
+      <div>
+        <p>Fecha de Revisión</p>
+        <input class="input_form" type="date" formControlName="date_revision" [min]="addOneYear(dateRelease.value )| date: 'yyyy-MM-dd'"
+        [ngClass]="{ 'invalid-input': productForm.get('date_revision')?.invalid && productForm.get('date_revision')?.touched }"
+        required/>
+        <div style="color: red;"
+          *ngIf="productForm.get('date_revision')?.invalid && productForm.get('date_revision')?.touched">
+          Este campo es requerido!
+        </div>
+      </div>
+    
+    </div>
+
+    <div class="buttons_panel">
+        <button type="button" class="option_button reset_button" (click)="productForm.reset()" [disabled]="cancelButtonDisabled">Reiniciar</button>
+        <button type="submit" class="option_button send_button" [disabled]="productForm.invalid" >Enviar</button>
+    </div>
+  </form>
+</div>

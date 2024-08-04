@@ -1,0 +1,82 @@
+.modal{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(85, 84, 84, 0.8);
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.horizontal {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  
+    .custom-hr {
+      width: 80%; 
+      border: none; 
+      border-top: 2px solid #333;
+      margin: 10px 0; 
+    }
+  }
+
+.text_modal {
+    width: 90%;
+    height: 50%;
+    display: inline-block;
+    padding-left: 7%;
+    padding-top: 5%;
+}
+
+.modal_buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+.option_button {
+    border: none;
+    border-radius: 5px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    font-weight: 600;
+    color: rgba(21,37,89,255);
+    flex: 1;
+    cursor: pointer;
+    
+    &.cancel_button {
+        background-color: rgba(234,236,242,255);
+        margin-right: 5%;
+    }
+    &.confirm_button {
+        background-color: rgba(245,223,102,255);
+        margin-left: 5%;
+    }
+    &.confirm_button:disabled {
+      background-color: rgba(245,223,102,255);
+      margin-left: 5%;
+      opacity: 0.5;
+      cursor: default;
+  }
+  }

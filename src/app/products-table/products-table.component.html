@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="paginator">
+    <input
+      type="text"
+      class="input_search"
+      placeholder="Search..."
+      [(ngModel)]="textSearch"
+      (ngModelChange)="onSearch()"
+    />
+    <button class="add_button" (click)="addProduct()">Agregar</button>
+  </div>
+  <div class="table_component" role="region" tabindex="0">
+    <table>
+      <thead>
+        <tr>
+          <th class="logo">Logo</th>
+          <th>Nombre del Producto</th>
+          <th>Descripción <img src="../assets/icon_info.png" alt="" width="15rem" title="Descripción del producto"></th>
+          <th>Fecha de liberación <img src="../assets/icon_info.png" alt="" width="15rem" title="Fecha de liberación del producto"></th>
+          <th>Fecha de reestructuración <img src="../assets/icon_info.png" alt="" width="15rem" title="Fecha de reestructuración del producto"></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of productsList.slice(0, showProducts) ; track $index) {
+        <tr>
+          <td class="logo"><img [src]="item.logo" alt="Imagen del producto" width="70rem"></td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.date_release | date : "dd/MM/yyyy" }}</td>
+          <td>{{ item.date_revision | date : "dd/MM/yyyy" }}</td>
+          <td>
+            <div class="dropdown">
+              <img
+                class="contextual_icon"
+                src="../assets/menu.png"
+                alt="context-menu"
+              />
+              <div class="dropdown-content">
+                <button (click)="updateData(item)">Editar</button>
+                <button (click)="deleteData(item)">Eliminar</button>
+              </div>
+            </div>
+          </td>
+        </tr>
+        }
+        <!-- @empty {
+                    <h1>No hay productos para mostrar</h1>
+                } -->
+      </tbody>
+    </table>
+    <div class="paginator">
+      <span>{{ totalProducts }} Resultados totales</span>
+      <select
+        class="show_products"
+        name="paginator"
+        id="cars"
+        [(ngModel)]="showProducts"
+      >
+        <option value="5" selected>5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+      </select>
+    </div>
+  </div>
+</div>
+@if (modalSwitch) {
+    <app-modal-delete (cancel)="cancelModal()" />
+}
+
+
+

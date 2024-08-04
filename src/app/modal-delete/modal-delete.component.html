@@ -1,0 +1,14 @@
+<div class="modal">
+  <div class="modal-content">
+      <div class="text_modal">
+        <p>¿Estas seguro de eliminar el producto {{ productName }}?</p>
+      </div>
+      <div class="horizontal">
+        <hr class="custom-hr" />
+      </div>
+      <div class="modal_buttons">
+        <button class="option_button cancel_button" (click)="closeModal()">Cancelar</button>
+        <button class="option_button confirm_button" (click)="deleteProduct()">Confirmar</button>
+      </div>
+  </div>
+</div>
